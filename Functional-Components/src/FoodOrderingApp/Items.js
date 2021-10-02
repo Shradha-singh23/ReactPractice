@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import './Items.css'
 
 export default function Items({dish, cart, setCart}){
     const[count, setCount] = useState(0);
@@ -42,13 +43,21 @@ export default function Items({dish, cart, setCart}){
     }
 
     return(
-        <div>
-            <h2>{dish.name}</h2>
-            <p>{dish.price}</p>
-            <p> Quantity:</p>
-            <button onClick={onAdd}>+</button>
-            <span>{count}</span>
-            <button onClick={removeFromCart}>-</button>
+        <div className="dishes-container">
+            <img src={dish.img} alt={dish.name} className="dish-image"/>
+            <div className="dish-details">
+                <h2 className="dish-title">{dish.name}</h2>
+                <p className="dish-price">Price: Rs. {dish.price}</p>
+            </div>
+            <div className="quantity-container">
+                <p className="quantity"> Quantity:</p>
+                <div className ="item-count-container">
+                    <button onClick={onAdd} className="add-remove-buttons">+</button>
+                    <span className="item-count">{count}</span>
+                    <button onClick={removeFromCart} className="add-remove-buttons">-</button>
+                </div>
+            </div>
+            
         </div>
 
     )
