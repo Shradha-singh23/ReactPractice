@@ -4,7 +4,7 @@ import './Header.css'
 export default function Header(){
     return(
         <>
-            <div className='main-container'>
+            <header className='main-container'>
                 <div className='label-container'>
                     <h1 className='heading'>Samira Restaurant</h1>
                     <p className='cuisine-type'>North Indian, Mughlai</p>
@@ -30,8 +30,8 @@ export default function Header(){
                         <p className='review-description'>Delivery Reviews</p>
                     </div> 
                 </div>
-            </div>
-            <div className='navigation-bar'>
+            </header>
+            <nav className='navigation-bar'>
                 <div className='navigation-items'>
                     Overview
                     <hr className='horizontal-line'/>
@@ -52,7 +52,7 @@ export default function Header(){
                     Photos
                     <hr className='horizontal-line'/>
                 </div>
-            </div>
+            </nav>
         </>
     )
 }
