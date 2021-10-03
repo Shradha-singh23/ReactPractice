@@ -1,9 +1,9 @@
 import React from 'react';
-import MenuPage from './FoodOrderingApp/MenuPage';
+import MainPage from './FoodOrderingApp/MainPage';
 
 export default function App(){
     return(
         <div>
-            <MenuPage />
+            <MainPage />
         </div>)
 }

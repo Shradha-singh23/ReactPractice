@@ -4,60 +4,59 @@ import './Items.css'
 export default function Items({dish, cart, setCart}){
     const[count, setCount] = useState(0);
 
-    const onAdd = () => {
-        setCount(count+1)
-        if (cart.length===0){
-            addIntoCart();
-            }
+    const onAddCart = () => {
+        setCount((prevCount) => prevCount + 1)
         const exist = cart.find((item) => item.name === dish.name);
         if(exist){
-            setCart(
-                cart.map((item) => item.name === dish.name ? {...exist, quantity: exist.quantity + 1 } : item
-                )
-            )
+            setCart((prevCart) => {
+                return prevCart.map((item) => {
+                    if (item.name === dish.name){
+                        item.quantity++
+                    }
+                    return item;
+                })
+            })
         } else {
-            addIntoCart();
+            const newItem = {
+                name: dish.name,
+                price: dish.price,
+                quantity: 1
+            }
+            setCart((prevCart) => [...prevCart, newItem])
         }
     }
-    const removeFromCart = () => {
+    const onRemoveCart = () => {
         setCount((prevCount) => prevCount - 1)
         const exist = cart.find((item) => item.name === dish.name)
-        if(exist.quantity === 1){
-            setCart(
-                cart.filter((item) => item.name !== dish.name)
-                )
+        if(exist.quantity === 1) {
+            setCart((prevCart) => prevCart.filter((item) => item.name !== dish.name))
         } else{
-            setCart(
-                cart.map((item) => item.name === dish.name ? {...exist, quantity: exist.quantity - 1} : item)
-            )
+            setCart((prevCart) => {
+                return prevCart.map((item) => {
+                    if (item.name === dish.name){
+                        item.quantity--
+                    }
+                    return item;
+                })
+            })
         }
-    }
-
-    const addIntoCart = (count) => {
-        const newItem = {
-            name: dish.name,
-            price: dish.price,
-            quantity: 1
-        }
-        setCart([...cart, newItem])
     }
 
     return(
         <div className="dishes-container">
             <img src={dish.img} alt={dish.name} className="dish-image"/>
             <div className="dish-details">
-                <h2 className="dish-title">{dish.name}</h2>
+                <h3 className="dish-title">{dish.name}</h3>
                 <p className="dish-price">Price: Rs. {dish.price}</p>
             </div>
             <div className="quantity-container">
                 <p className="quantity"> Quantity:</p>
                 <div className ="item-count-container">
-                    <button onClick={onAdd} className="add-remove-buttons">+</button>
-                    <span className="item-count">{count}</span>
-                    <button onClick={removeFromCart} className="add-remove-buttons">-</button>
+                    <button onClick={onAddCart} className="add-remove-buttons">+</button>
+                    <span className="item-count">{count === 0 ? "Add" : count}</span>
+                    {count > 0 && <button onClick={onRemoveCart} className="add-remove-buttons">-</button>}
                 </div>
             </div>
-            
         </div>
 
     )

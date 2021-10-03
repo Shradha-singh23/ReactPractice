@@ -6,9 +6,9 @@ export default function Header(){
         <>
             <div className='main-container'>
                 <div className='label-container'>
-                    <p className='heading'>Samira Restaurant</p>
-                    <p className='address1'>North Indian, Mughlai</p>
-                    <p className='address2'>Leader Road, Allahabad</p>
+                    <h1 className='heading'>Samira Restaurant</h1>
+                    <p className='cuisine-type'>North Indian, Mughlai</p>
+                    <p className='address'>Leader Road, Allahabad</p>
                 </div>
                 <div className='rating-container'>
                     <div className='rating'>
@@ -32,19 +32,24 @@ export default function Header(){
                 </div>
             </div>
             <div className='navigation-bar'>
-                <div className='navigation-items'>Overview
+                <div className='navigation-items'>
+                    Overview
                     <hr className='horizontal-line'/>
                 </div>
-                <div className='active-item'>Order Online
+                <div className='active-item'>
+                    Order Online
                     <hr className='active-horizontal-line'/>
                 </div>
-                <div className='navigation-items'>Reviews
+                <div className='navigation-items'>
+                    Reviews
                     <hr className='horizontal-line'/>
                 </div>
-                <div className='navigation-items'>Menu
+                <div className='navigation-items'>
+                    Menu
                     <hr className='horizontal-line'/>
                 </div>
-                <div className='navigation-items'>Photos
+                <div className='navigation-items'>
+                    Photos
                     <hr className='horizontal-line'/>
                 </div>
             </div>

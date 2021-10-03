@@ -58,6 +58,7 @@
 
 .item-count {
   align-items: center;
+  padding-right: 5px;
   justify-content: center;
   width: 25px;
   height: 25px;

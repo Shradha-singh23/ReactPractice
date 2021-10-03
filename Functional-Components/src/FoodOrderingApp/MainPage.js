@@ -1,9 +1,9 @@
-import React,{useState} from 'react';    
+import React, { useState } from 'react';    
 import Items from './Items'
 import Header from './Header';
-import './MenuPage.css'
+import './MainPage.css'
 
-const dishes =[
+const dishes = [
     {
         name: "Salad",
         img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2FsYWR8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
@@ -21,22 +21,23 @@ const dishes =[
     }
 ]
 
-export default function MenuPage (){
-    const[cart, setCart] = useState([]);
-    return(
+export default function MenuPage() {
+    const [cart, setCart] = useState([]);
+    const subTotal = cart.reduce((prevValue, item) => prevValue + item.price * item.quantity, 0)
+    return (
+
         <div>
             <Header />
-            <div className="main-container">
+            <section className="main-container">
                 <div className="menu-container">
                     <h2 className="menu-heading">Menu</h2>
-                    <hr className="heading-horizontali-line"/>
-                    {dishes.map((dish, index) => {
-                    return <Items dish={dish} key={index} cart={cart} setCart={setCart}/> 
-                    })} 
+                    <hr className="heading-horizontal-line"/>
+                    {dishes.map((dish, index) => <Items dish={dish} key={index} cart={cart} setCart={setCart}/> 
+                    )} 
                 </div>  
                 <div className="cart-container">
                     <h2 className="menu-heading">Your Orders</h2>
-                    <hr className="heading-horizontali-line"/>
+                    <hr className="heading-horizontal-line"/>
                     {cart.length === 0 && <span className="dish-title">Cart is Empty</span>}
                     {cart.map((item,index) => {
                         return(
@@ -46,14 +47,13 @@ export default function MenuPage (){
                                 <span className="cart-quantity-item-price"> = Rs. {item.price*item.quantity}</span>
                             </div>)    
                     })} 
-                    <hr className="heading-horizontali-line"/>
+                    <hr className="heading-horizontal-line"/>
                     <div className="subTotal-container">
                         <h2 className="heading">Sub Total:</h2>
-                        <span className="total-amount"> Rs. {cart.reduce((prevValue, item) => prevValue + item.price * item.quantity, 0)} </span>
+                        <span className="total-amount"> Rs. {subTotal} </span>
                     </div>
                 </div>  
-                
-            </div>         
+            </section>         
         </div>
     )
 }
