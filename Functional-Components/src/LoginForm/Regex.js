@@ -1,0 +1,1 @@
+export const validPassword = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*)(?=.*[$@$!%*?&.])[A-Za-z$@$!%*?&.]{6, 20}$');

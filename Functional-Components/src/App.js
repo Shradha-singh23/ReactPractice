@@ -1,9 +1,9 @@
 import React from 'react';
-import MainPage from './FoodOrderingApp/MainPage';
+import Form from './LoginForm/Form';
 
 export default function App(){
     return(
         <div>
-            <MainPage />
+            <Form />
         </div>)
 }

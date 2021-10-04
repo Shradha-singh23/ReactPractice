@@ -1,0 +1,87 @@
+body {
+  background-color: #000000;
+  background-image: url("https://images.unsplash.com/photo-1510519138101-570d1dca3d66?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZGFyayUyMGRlc2t8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  font-family: "Lucida Grande", "Lucida Sans", Arial;
+}
+
+h1 {
+  font-size: 45px;
+  color: #fff;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-align: center;
+  padding-top: 3%;
+  padding-bottom: 1%;
+}
+
+.form-container {
+  display: flex;
+  direction: row;
+  width: 50%;
+  height: 50%;
+  z-index: 999;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: -1px 4px 28px 0px rgb(0 0 0 / 75%);
+  height: 100%;
+  justify-content: center;
+  margin-left: 25%;
+}
+
+.input-tabs {
+  outline: none;
+  font-size: 15px;
+  color: #222;
+  border: none;
+  width: 100%;
+  display: inline-block;
+  background: transparent;
+  letter-spacing: 1px;
+  margin-top: 3%;
+  padding: 0.8em 1em;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.btn {
+  background: #007cc0;
+  color: #fff;
+  font-size: 15px;
+  text-transform: uppercase;
+  padding: 0.8em 2em;
+  letter-spacing: 1px;
+  transition: 0.5s all;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  width: 100%;
+}
+
+.input-label {
+  font-size: 20px;
+  color: #fff;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-align: center;
+}
+
+.input-container {
+  margin-top: 5%;
+}
+
+.error-message {
+  font-weight: bolder;
+  color: #b31b1b;
+  padding-top: 10px;
+  width: 50%;
+}
+
+.btn-err-container {
+  margin-top: 5%;
+  margin-bottom: 0%;
+}
