@@ -1,5 +1,6 @@
-import React,  { useState } from 'react';
-import Dropdown from './components/Dropdown';
+import React from 'react';
+import Translate from './components/Translate';
+// import Dropdown from './components/Dropdown';
 // import Accordion from './components/Accordion';
 // import Search from './components/Search';
 
@@ -18,31 +19,32 @@ import Dropdown from './components/Dropdown';
 //     }
 // ]
 
-const options = [
-    {
-        label: 'The color Red',
-        value: 'red'
-    },
-    {
-        label: 'The color Green',
-        value: 'green'
-    },
-    {
-        label: 'The shade of Blue',
-        value: 'blue'
-    }
-]
+// const options = [
+//     {
+//         label: 'The color Red',
+//         value: 'red'
+//     },
+//     {
+//         label: 'The color Green',
+//         value: 'green'
+//     },
+//     {
+//         label: 'The shade of Blue',
+//         value: 'blue'
+//     }
+// ]
 
 const Widgets = () => { 
-    const [selected, setSelected] =  useState(options[0]);
+    // const [selected, setSelected] =  useState(options[0]);
     return (
         // <Accordion items = {items}/>
         // <Search />
-        <Dropdown 
-            selected={selected}
-            onSelectedChange={setSelected}
-            options={options}
-        />
+        // <Dropdown 
+        //     selected={selected}
+        //     onSelectedChange={setSelected}
+        //     options={options}
+        // />
+        <Translate />
     )
 }
 

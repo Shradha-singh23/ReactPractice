@@ -13,34 +13,58 @@ const userDetail = [
 export default function Form(){
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
+    const [isEmptyEmail, setIsEmptyEmail] = useState(false);
+    const [isEmptyPswrd, setIsEmptyPswrd] = useState(false);
     const [isValidEmail, setIsValidEmail] = useState(false);
     const [isValidPswrd, setIsValidPswrd] = useState(false);
     const [error, setError] = useState(false);
     const [buttonText,setButtonText] = useState('Login');
     const [disable, setDisable] = useState(false);
+
+
     const onEmailChange = e => {
+        setIsValidEmail(false);
+        setIsEmptyEmail(false);
+        setButtonText('LOGIN');
         setEmail(e.target.value);
     }
 
     const onPasswordChange = e => {
+        setIsValidPswrd(false);
+        setIsEmptyPswrd(false);
+        setButtonText('LOGIN');
         setPassword(e.target.value);
     }
 
     function loginDetails(e){
         e.preventDefault();
-        setDisable(true);
         setButtonText("Loading...")
+
+        if(email === ''){
+            setIsEmptyEmail(true);
+            
+        }
+
+        if(password === ''){
+            setIsEmptyPswrd(true);
+            return;
+        }
+
         if (!validator.isEmail(email)){
             setIsValidEmail(true);
+            return;
         }
+        
         if (!validPassword.test(password)) {
             setIsValidPswrd(true);
+            return;
         }
         setTimeout(()=>{
             userDetail.map((detail) => {
                 if(email !== detail.email || password !== detail.password){
                     setError(true);     
                 } else {
+                    setDisable(true);
                     alert('Successfully Logged!');
                 }
                 return detail;
@@ -63,8 +87,10 @@ export default function Form(){
                             onChange={onEmailChange}
                             value={email}
                             require
+                            style={isValidEmail||isEmptyEmail ? {border: '1px solid red'} : {border:'none'}}
                         />
-                        {isValidEmail && <span className="error-message">Enter Valid Email </span>}
+                        {isEmptyEmail && <p className="error-message">Email is Required </p>}
+                        {isValidEmail && <p className="error-message">Email address is invalid </p>}
                     </div>
                     <div className="input-container">
                         <label className="input-label"> Password: </label>
@@ -74,11 +100,13 @@ export default function Form(){
                             className="input-tabs"
                             onChange={onPasswordChange}
                             value={password}
+                            style={isEmptyPswrd||isValidPswrd ? {border: '1px solid red'} : {border:'none'}}
                         />
-                        {isValidPswrd && <span className="error-message">Enter Valid Password </span>}
+                        {isEmptyPswrd && <p className="error-message">Password is Required </p>}
+                        {isValidPswrd && <p className="error-message">Password should be 6 characters long  with a <br />uppercase character, a number and a special character</p>}
                     </div>
                     <div className="btn-err-container">
-                        {error && <span className="error-message">Email or Password is Wrong </span>}
+                        {error && <p className="error-message">Email or Password is Wrong </p>}
                         <button 
                             className="btn" 
                             onClick={loginDetails}
