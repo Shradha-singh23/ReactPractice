@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import validator from 'validator';
-import { validPassword } from './Regex';
+// import { validPassword } from './Regex';
 import './Form.css';
 
 const userDetail = [
@@ -16,7 +16,7 @@ export default function Form(){
     const [isEmptyEmail, setIsEmptyEmail] = useState(false);
     const [isEmptyPswrd, setIsEmptyPswrd] = useState(false);
     const [isValidEmail, setIsValidEmail] = useState(false);
-    const [isValidPswrd, setIsValidPswrd] = useState(false);
+    // const [isValidPswrd, setIsValidPswrd] = useState(false);
     const [error, setError] = useState(false);
     const [buttonText,setButtonText] = useState('Login');
     const [disable, setDisable] = useState(false);
@@ -30,7 +30,7 @@ export default function Form(){
     }
 
     const onPasswordChange = e => {
-        setIsValidPswrd(false);
+        // setIsValidPswrd(false);
         setIsEmptyPswrd(false);
         setButtonText('LOGIN');
         setPassword(e.target.value);
@@ -54,11 +54,11 @@ export default function Form(){
             setIsValidEmail(true);
             return;
         }
-        
-        if (!validPassword.test(password)) {
-            setIsValidPswrd(true);
-            return;
-        }
+        // This validation will be used in Sign up form
+        // if (!validPassword.test(password)) {
+        //     setIsValidPswrd(true);
+        //     return;
+        // }
         setTimeout(()=>{
             userDetail.map((detail) => {
                 if(email !== detail.email || password !== detail.password){
@@ -100,10 +100,10 @@ export default function Form(){
                             className="input-tabs"
                             onChange={onPasswordChange}
                             value={password}
-                            style={isEmptyPswrd||isValidPswrd ? {border: '1px solid red'} : {border:'none'}}
+                            style={isEmptyPswrd ? {border: '1px solid red'} : {border:'none'}}
                         />
                         {isEmptyPswrd && <p className="error-message">Password is Required </p>}
-                        {isValidPswrd && <p className="error-message">Password should be 6 characters long  with a <br />uppercase character, a number and a special character</p>}
+                        {/* {isValidPswrd && <p className="error-message">Password should be 6 characters long  with a <br />uppercase character, a number and a special character</p>} */}
                     </div>
                     <div className="btn-err-container">
                         {error && <p className="error-message">Email or Password is Wrong </p>}
