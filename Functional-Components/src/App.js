@@ -5,6 +5,7 @@ import Widgets from './Widgets/Widgets';
 export default function App(){
     return(
         <div>
+            {/* <Form /> */}
             <Widgets />
         </div>)
 }

@@ -29,7 +29,7 @@ export default function Convert({ text, language }) {
             setTranslated(data.data.translations[0].translatedText);
         }
         doTranslation();
-    },[debouncedText,language])
+    },[debouncedText, language])
 
     return (
         <div>
