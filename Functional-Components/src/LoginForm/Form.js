@@ -1,119 +1,109 @@
 import React, { useState } from 'react';
 import validator from 'validator';
-// import { validPassword } from './Regex';
 import './Form.css';
 
-const userDetail = [
-    {
-        email: "shradha23singh@gmail.com",
-        password: "Shradha@2310"
-    }
-]
+const userDetail = {
+    email: "shradha23singh@gmail.com",
+    password: "Shradha@2310"
+}
 
 export default function Form(){
-    const [email,setEmail] = useState('');
-    const [password,setPassword] = useState('');
-    const [isEmptyEmail, setIsEmptyEmail] = useState(false);
-    const [isEmptyPswrd, setIsEmptyPswrd] = useState(false);
-    const [isValidEmail, setIsValidEmail] = useState(false);
-    // const [isValidPswrd, setIsValidPswrd] = useState(false);
-    const [error, setError] = useState(false);
-    const [buttonText,setButtonText] = useState('Login');
-    const [disable, setDisable] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState({
+        email: false,
+        password: false
+    });
 
 
     const onEmailChange = e => {
-        setIsValidEmail(false);
-        setIsEmptyEmail(false);
-        setButtonText('LOGIN');
+        setError((prevError) => ({
+            ...prevError,
+            email: false
+        }))
         setEmail(e.target.value);
     }
 
     const onPasswordChange = e => {
-        // setIsValidPswrd(false);
-        setIsEmptyPswrd(false);
-        setButtonText('LOGIN');
+        setError((prevError) => ({
+            ...prevError,
+            password: false
+        }))
         setPassword(e.target.value);
     }
 
-    function loginDetails(e){
+    function handleLogin(e){
         e.preventDefault();
-        setButtonText("Loading...")
-
-        if(email === ''){
-            setIsEmptyEmail(true);
-            
+        const error = {};
+        if (email === '' || !validator.isEmail(email)){
+            error.email = true;
         }
 
-        if(password === ''){
-            setIsEmptyPswrd(true);
+        if (password === ''){
+            error.password = true;
+        }
+
+        if (error.email || error.password){
+            setError(error);
             return;
         }
 
-        if (!validator.isEmail(email)){
-            setIsValidEmail(true);
-            return;
-        }
-        // This validation will be used in Sign up form
-        // if (!validPassword.test(password)) {
-        //     setIsValidPswrd(true);
-        //     return;
-        // }
+        setLoading(true);
         setTimeout(()=>{
-            userDetail.map((detail) => {
-                if(email !== detail.email || password !== detail.password){
-                    setError(true);     
-                } else {
-                    setDisable(true);
-                    alert('Successfully Logged!');
-                }
-                return detail;
-            })
-        },3000);
+            if(email === userDetail.email && password === userDetail.password){
+                alert('Successfully Logged!');
+            } else {
+                alert('Email or Password is wrong');
+            }
+            setLoading(false);
+        }, 3000);
         
     }
     return(
         <>
-            <h1> Login Form </h1>
+            <h1>Login Form </h1>
             <div className='form-container'>
                 <form className='form'>
                     <div className="input-container">
-                        <label className="input-label"> Email: </label>
-                        
+                        <label className="input-label">Email: 
                         <input 
                             type='email' 
                             placeholder='Enter your Email' 
                             className="input-tabs" 
                             onChange={onEmailChange}
                             value={email}
-                            require
-                            style={isValidEmail||isEmptyEmail ? {border: '1px solid red'} : {border:'none'}}
+                            required
+                            style={{ border: error.email ? '1px solid red' : 'none' }}
                         />
-                        {isEmptyEmail && <p className="error-message">Email is Required </p>}
-                        {isValidEmail && <p className="error-message">Email address is invalid </p>}
+                        </label>
+                        {error.email && 
+                            <p className="error-message">
+                                {email.length  === 0 ? 'Email is Required' : 'Email address is invalid'}
+                            </p>
+                        }
                     </div>
                     <div className="input-container">
-                        <label className="input-label"> Password: </label>
+                        <label className="input-label">Password:
                         <input 
                             type='password' 
                             placeholder='Password' 
                             className="input-tabs"
                             onChange={onPasswordChange}
                             value={password}
-                            style={isEmptyPswrd ? {border: '1px solid red'} : {border:'none'}}
+                            style={{ border: error.password ? '1px solid red' : 'none' }}
                         />
-                        {isEmptyPswrd && <p className="error-message">Password is Required </p>}
-                        {/* {isValidPswrd && <p className="error-message">Password should be 6 characters long  with a <br />uppercase character, a number and a special character</p>} */}
+                        </label>
+                        {error.password && password.length === 0 && <p className="error-message">Password is Required</p>}
                     </div>
                     <div className="btn-err-container">
-                        {error && <p className="error-message">Email or Password is Wrong </p>}
-                        <button 
+                        <button
                             className="btn" 
-                            onClick={loginDetails}
-                            disabled={disable}
-                            style={disable ? {background:'grey'} : {background: '#007cc0'}}
+                            onClick={handleLogin}
+                            disabled={loading}
+                            style={{backgroundColor: loading ? 'grey': '#007cc0'}}
                         > 
-                            {buttonText}
+                            {loading ? 'Loading...' : 'Login'}
                         </button>
                     </div>
                 </form>
