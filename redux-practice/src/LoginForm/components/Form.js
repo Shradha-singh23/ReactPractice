@@ -1,45 +1,23 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { handleEmailChange,  handleEmailError,  handleLoading,  handlePassChange, handlePasswordError } from "../redux/action";
+import { handleEmailChange,  handleLogin, handlePassChange } from "../redux/action";
 
 import './Form.css';
 
-const emailRegex = /\S+@\S+\.\S+/;
+// const emailRegex = /\S+@\S+\.\S+/;
 
 export default function Form(){
     const email = useSelector(state => state.email);
     const password = useSelector(state => state.password);
-    const correctEmail = useSelector(state => state.userDetail.email);
-    const emailError = useSelector(state => state.emailError)
-    const passwordError = useSelector(state => state.passwordError)
-    const loading = useSelector(state => state.loading)
+    const error = useSelector(state => state.error);
+    const loginSuccess = useSelector(state => state.loginSuccess);
+    const loginFaliure = useSelector(state => state.loginFaliure);
 
     const dispatch = useDispatch();
 
-    function handleLogin(e){
+    function handleLoginButton(e){
         e.preventDefault();
-        if (email === '' || !emailRegex.test(email)){
-            dispatch(handleEmailError());
-        }
-
-        if (password === ''){
-            dispatch(handlePasswordError());
-        }
-        
-        if (emailError || passwordError){
-            return;
-        }
-
-        dispatch(handleLoading(true));
-        setTimeout(()=>{
-            if(email === correctEmail.email && password === correctEmail.password){
-                alert('Successfully Logged!');
-            } else {
-                alert('Email or Password is wrong');
-            }
-            dispatch(handleLoading(false));
-        }, 3000);
-        
+        dispatch(handleLogin());
     }
     return(
         <>
@@ -54,10 +32,10 @@ export default function Form(){
                             className="input-tabs" 
                             onChange={(e) => dispatch(handleEmailChange(e))}
                             value={email}
-                            style={{ border: emailError ? '1px solid red' : 'none' }}
+                            style={{ border: error.email ? '1px solid red' : 'none' }}
                         />
                         </label>
-                        {emailError && 
+                        {error.email && 
                             <p className="error-message">
                                 {email.length  === 0 ? 'Email is Required' : 'Email address is invalid'}
                             </p>
@@ -71,20 +49,21 @@ export default function Form(){
                             className="input-tabs"
                             onChange={(e) => dispatch(handlePassChange(e))}
                             value={password}
-                            style={{ border: passwordError ? '1px solid red' : 'none' }}
+                            style={{ border: error.password ? '1px solid red' : 'none' }}
                         />
                         </label>
-                        {passwordError && password.length === 0 && <p className="error-message">Password is Required</p>}
+                        {error.password && password.length === 0 && <p className="error-message">Password is Required</p>}
                     </div>
                     <div className="btn-err-container">
                         <button
                             className="btn" 
-                            onClick={handleLogin}
-                            disabled={loading}
-                            style={{backgroundColor: loading ? 'grey': '#007cc0'}}
+                            onClick={handleLoginButton}
+                            style={{backgroundColor: '#007cc0'}}
                         > 
-                            {loading ? 'Loading...' : 'Login'}
+                            Login
                         </button>
+                        {loginSuccess && <p style={{backgroundColor:'green'}}>Login Successfully</p>}
+                        {loginFaliure && <p style={{backgroundColor:'red'}}>Please check your Email and Password</p>}
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-import { EMAIL_CHANGE, LOADING, PASS_CHANGE, SET_EMAIL_ERROR, SET_PASSWORD_ERROR,  } from "./actionTypes";
+import { EMAIL_CHANGE, HANDLE_LOGIN, LOADING, PASS_CHANGE, SET_ERROR } from "./actionTypes";
 
 export const handleEmailChange = (e) => {
     const action ={
@@ -16,19 +16,16 @@ export const handlePassChange = (e) => {
     return action;
 }
 
-export const handleEmailError = (booleanValue) => {
+export const handleError = (error) => {
     const action = {
-        type: SET_EMAIL_ERROR,
-        payload: booleanValue
+        type: SET_ERROR,
+        payload: error
     }
     return action;
 }
 
-export const handlePasswordError = () => {
-    const action = {
-        type: SET_PASSWORD_ERROR
-    }
-    return action;
+export const handleLogin = () => {
+    return { type: HANDLE_LOGIN };
 }
 
 export const handleLoading = (booleanValue) => {

@@ -8,9 +8,13 @@ const initialState = {
         email: "shradha23singh@gmail.com",
         password: "Shradha@2310"
     },
-    emailError:false,
-    passwordError:false,
-    loading:false
+    error: {
+        email: false,
+        password: false
+    },
+    loading: false,
+    loginSuccess: false,
+    loginFaliure: false
 }
 
 const store = createStore(reducer, initialState);
