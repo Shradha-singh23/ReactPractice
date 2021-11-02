@@ -1,6 +1,5 @@
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-// import TodoList from './components/TodoList';
 import Form from './components/Form';
 
 export default function App() {

@@ -1,10 +1,10 @@
 import React from 'react';
-import Form from './LoginForm/Form'
+import Board from './SnakeAndLadder/components/Board';
 
 
 export default function App(){
     return(
         <div>
-            <Form />
+            <Board />
         </div>)
 }

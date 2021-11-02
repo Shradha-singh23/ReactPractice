@@ -62,8 +62,8 @@ export default function Form(){
                         > 
                             Login
                         </button>
-                        {loginSuccess && <p style={{backgroundColor:'green'}}>Login Successfully</p>}
-                        {loginFaliure && <p style={{backgroundColor:'red'}}>Please check your Email and Password</p>}
+                        {loginSuccess && <p style={{color:'green'}}>Login Successfully</p>}
+                        {loginFaliure && <p style={{color:'red'}}>Please check your Email and Password</p>}
                     </div>
                 </div>
             </div>
