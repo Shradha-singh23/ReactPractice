@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './Board.css';
-import dice1 from '../assets/dice1.png';
-// import dice2 from '../assets/dice2.png';
-// import dice3 from '../assets/dice3.png';
-// import dice4 from '../assets/dice4.png';
-// import dice5 from '../assets/dice5.png';
-// import dice6 from '../assets/dice6.png';
 
 const n = 6;
 const matrixArray = [];
@@ -100,9 +94,8 @@ export default function Board(){
                 })}
             </div>
             <div class="dice-container">
-                <img src={dice1} alt="Dice" />
+                <img src={require(`../assets/dice${diceValue}.png`).default} alt="Dice" />
                 <button onClick={() => roll()}>Roll Dice</button>
-                {diceValue}
             </div>
         </div>
     )
